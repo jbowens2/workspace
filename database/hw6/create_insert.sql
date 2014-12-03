@@ -81,7 +81,3 @@ insert into SPJ(s_num, p_num, j_num, qty) values
 ('s1','p1','j1',200),
 ('s1','p1','j4',700),
 ('s2','p3','j1',200);
-
--- queries
-
-select *,(select s_name from S as B where B.s_num = A.s_num)from SPJ as A where A.p_num = 'p3';
