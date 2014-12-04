@@ -32,6 +32,7 @@ create table if not exists SPJ(
 	s_num varchar(10) not null,
     p_num varchar(10) not null,
     j_num varchar(10) not null,
+    primary key(s_num, p_num, j_num),
     qty int not null,
     constraint `SPJ_to_S`
 		foreign key(s_num)
@@ -79,5 +80,51 @@ insert into S(s_num, s_name, status, city) values
 
 insert into SPJ(s_num, p_num, j_num, qty) values
 ('s1','p1','j1',200),
+
 ('s1','p1','j4',700),
-('s2','p3','j1',200);
+
+('s2','p3','j1',400),
+
+('s2','p3','j2',200),
+
+('s2','p3','j3',200),
+
+('s2','p3','j4',500),
+
+('s2','p3','j5',600),
+
+('s2','p3','j6',400),
+
+('s2','p3','j7',800),
+
+('s2','p5','j2',100),
+
+('s3','p3','j1',200),
+
+('s3','p4','j2',500),
+
+('s4','p6','j3',300),
+
+
+
+('s4','p6','j7',300),
+
+('s5','p1','j4',100),
+
+('s5','p2','j2',200),
+
+('s5','p2','j4',100),
+
+('s5','p3','j4',200),
+
+('s5','p4','j4',800),
+
+('s5','p5','j4',400),
+
+('s5','p5','j5',500),
+
+('s5','p5','j7',100),
+
+('s5','p6','j2',200),
+
+('s5','p6','j4',500);
