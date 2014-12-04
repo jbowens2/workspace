@@ -1,12 +1,13 @@
+-- Jimmy Bowens
+-- COSC Database
+-- Homework #6
+
 use hw6;
--- select *,(select s_name from S as B where B.s_num = A.s_num AND B.s_name LIKE 'A%')from SPJ as A where A.p_num = 'p3';
 
 -- 1 
 select s_name, s_num from S AS suppliers 
 	where suppliers.s_num in (select s_num from SPJ AS joint_table) 
     AND suppliers.s_name LIKE 'A%';
-
--- select s_name, s_num from S AS suppliers where suppliers.s_num in (select s_num from SPJ AS joint_table where joint_table.s_num in (select p_num from P as parts where parts.p_name LIKE 'S%')) AND suppliers.s_name LIKE 'A%';
 
 -- 2 
 
@@ -46,11 +47,32 @@ select sum(status) AS paris_status into @paris_status from S where S.city = 'par
 select s_num, s_name from S where S.status > @paris_status;
 
 -- 8
-
--- select s_name, (select sum(qty) from SPJ as joint_table where joint_table.s_num = supplier.s_num) from S AS supplier;
 select s_name from S AS supplier 
 join SPJ as joint_table on supplier.s_num = joint_table.s_num group by (joint_table.qty) having sum(joint_table.qty) > 1000;
 
 
+-- 9
+
+select j_num, city from J as jobs where jobs.city LIKE 'A%' order by city;
+
+-- 10
+update S as suppliers set suppliers.status = suppliers.status + 5 where suppliers.city = 'Paris';
+
+-- 11
+
+update P as parts set parts.p_name = 'Hammer' where parts.p_name = 'Screw' AND parts.city = 'London' AND parts.color = 'Red';
+
+-- 12
+
+delete J , SPJ
+from J inner join SPJ on J.j_num = SPJ.j_num
+where J.city = 'Rome';
+	
+-- 13
+-- NOT POSSIBLE
+
+-- 14
+drop view if exists supplier_shipment;
+create view supplier_shipment AS select s_num as supplier_id, qty as quantity from SPJ AS joint_table;
 
 

@@ -1,3 +1,7 @@
+-- Jimmy Bowens
+-- COSC Database
+-- Homework #6
+
 drop schema if exists hw6;
 create schema hw6;
 use hw6;
@@ -25,7 +29,7 @@ create table if not exists S(
     s_name varchar(45) not null,
     status int not null,
     city varchar(45) not null,
-    primary key(s_num)
+    primary key(s_num,status)
 );
 
 create table if not exists SPJ(
